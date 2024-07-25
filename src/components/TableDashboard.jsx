@@ -1,26 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Modal from 'react-modal';
-import { format } from 'date-fns';
-import PopOut from './PopOut';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Modal from "react-modal";
+import { format } from "date-fns";
+import PopOut from "./PopOut";
 
-Modal.setAppElement('#root');
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEye,
+  faTrash,
+  faCaretLeft,
+  faCaretRight,
+} from "@fortawesome/free-solid-svg-icons";
+
+Modal.setAppElement("#root");
 
 const Table = () => {
   const [data, setData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Adjust rows per page
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://formd-research.000webhostapp.com/sample');
-        console.log(response.data)
+        const response = await axios.get(
+          "https://formd-research.000webhostapp.com/sample"
+        );
+        console.log(response.data);
         setData(response.data);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching data: ', error);
+        console.error("Error fetching data: ", error);
       }
     };
 
@@ -38,7 +50,25 @@ const Table = () => {
   };
 
   const formatDateTime = (datetime) => {
-    return format(new Date(datetime), 'dd-MM-yyyy HH:mm:ss');
+    return format(new Date(datetime), "dd-MM-yyyy HH:mm:ss");
+  };
+
+  // Pagination logic
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);
+  const totalPages = Math.ceil(data.length / rowsPerPage);
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   if (loading) {
@@ -51,43 +81,94 @@ const Table = () => {
           <span className="sr-only">Loading...</span>
         </div>
       </div>
-    )
+    );
   }
 
   return (
-    <div className="container mx-auto mt-8">
-      <table className="min-w-full bg-white border border-gray-200">
-        <thead>
-          <tr>
-            <th className="px-4 py-2 border">No</th>
-            <th className="px-4 py-2 border">Waktu dan Tanggal</th>
-            <th className="px-4 py-2 border">Sampel ke-</th>
-            <th className="px-4 py-2 border">Absorbansi</th>
-            <th className="px-4 py-2 border">Konsentrasi</th>
-            <th className="px-4 py-2 border">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={item.id}>
-              <td className="px-4 py-2 border text-center">{index + 1}</td>
-              <td className="px-4 py-2 border text-center">{formatDateTime(item.created_at)}</td>
-              <td className="px-4 py-2 border text-center">Sampel ke-{index + 1}</td>
-              <td className="px-4 py-2 border text-center">{item.absorbance}</td>
-              <td className="px-4 py-2 border text-center">{item.concentration}</td>
-              <td className="px-4 py-2 border text-center">
-                <button
-                  onClick={() => openModal(item)}
-                  className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-700"
-                >
-                  Lihat
-                </button>
-                <button className="bg-red-500 text-white px-4 py-1 rounded ml-2 hover:bg-red-700">Delete</button>
-              </td>
+    <div className="lg:container flex flex-col items-center justify-center mx-0 md:mx-auto md:mt-2">
+      <div className="w-full max-w-full full overflow-y-auto">
+        <table className="table table-striped table-bordered table-hover rounded-md bg-white border border-gray-200 w-full">
+          <thead>
+            <tr>
+              <th className="px-2 py-2 border">No</th>
+              <th className="px-2 py-2 border">Waktu dan Tanggal</th>
+              <th className="px-2 py-2 border">Sampel ke-</th>
+              <th className="px-2 py-2 border">Absorbansi</th>
+              <th className="px-2 py-2 border">Konsentrasi</th>
+              <th className="px-2 py-2 border">Aksi</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currentRows.map((item, index) => (
+              <tr key={item.id}>
+                <td className="px-2 py-2 border text-center">
+                  {indexOfFirstRow + index + 1}
+                </td>
+                <td className="px-2 py-2 border text-center">
+                  {formatDateTime(item.created_at)}
+                </td>
+                <td className="px-2 py-2 border text-center">
+                  Sampel ke-{indexOfFirstRow + index + 1}
+                </td>
+                <td className="px-2 py-2 border text-center">
+                  {item.absorbance}
+                </td>
+                <td className="px-2 py-2 border text-center">
+                  {item.concentration}
+                </td>
+                <td className="px-2 py-2 border flex flex-wrap items-center justify-center gap-2 text-center">
+                  <button
+                    onClick={() => openModal(item)}
+                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
+                  >
+                    <FontAwesomeIcon icon={faEye} />
+                  </button>
+                  <button className="bg-red-500 text-white px-2 py-1 rounded md:ml-2 hover:bg-red-700">
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handlePrevPage}
+          className={`bg-gray-500 text-white px-4 py-2 rounded mr-2 ${
+            currentPage === 1 ? "disabled bg-gray-100" : "hover:bg-gray-700"
+          }`}
+          disabled={currentPage === 1}
+        >
+          <FontAwesomeIcon icon={faCaretLeft} />
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 border mx-1 rounded ${
+              index + 1 === currentPage
+                ? "bg-gray-700 text-white"
+                : "bg-white text-gray-700"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={handleNextPage}
+          className={`bg-gray-500 text-white px-4 py-2 rounded ml-2 ${
+            currentPage === totalPages
+              ? "disabled bg-gray-100"
+              : "hover:bg-gray-700"
+          }`}
+          disabled={currentPage === totalPages}
+        >
+          <FontAwesomeIcon icon={faCaretRight} />
+        </button>
+      </div>
 
       <Modal
         isOpen={modalIsOpen}
@@ -97,10 +178,15 @@ const Table = () => {
         overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
         {selectedData && (
-          <PopOut data={selectedData} closeModal={closeModal} format={formatDateTime} />
+          <PopOut
+            data={selectedData}
+            closeModal={closeModal}
+            format={formatDateTime}
+          />
         )}
       </Modal>
     </div>
   );
 };
+
 export default Table;
