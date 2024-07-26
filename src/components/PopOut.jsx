@@ -187,7 +187,7 @@ const PopOut = ({ data, closeModal }) => {
             </button>
             <button
               onClick={handleNextPage}
-              className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === totalPages ? "disabled bg-blue-100" : "hover:bg-blue-700"}`}
+              className={`text-white px-4 py-2 rounded ${currentPage === totalPages ? "disabled bg-blue-100" : "hover:bg-blue-700 bg-blue-500"}`}
               disabled={currentPage === totalPages}
             >
               <FontAwesomeIcon icon={faCaretRight} />
