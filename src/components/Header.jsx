@@ -6,7 +6,7 @@ const Header = () => {
       {/* Suggested code may be subject to a license. Learn more: ~LicenseLog:3506041666. */}
       <section className="lg:container flex md:flex-row flex-col mt-[4rem] md:items-start items-center justify-center font-['Montserrat']">
         <div className="lg:basis-1/2 basis-full md:ml-[6rem] flex justify-center md:items-start items-center flex-col">
-          <p className="text-sm bg-[#11468f] w-1/2 text-center py-2 rounded-lg text-white italic">
+          <p className="text-[11px] md:text-[20px] bg-[#11468f] w-1/2 text-center py-2 rounded-lg text-white italic">
             Welcome to My Web Research
           </p>
           <p className="text-[30px] md:text-[45px] md:leading-tight uppercase mt-4 font-black md:w-[500px] text-[#11468f] md:text-left text-center px-[1rem] md:px-0">

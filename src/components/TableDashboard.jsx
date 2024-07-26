@@ -90,12 +90,12 @@ const Table = () => {
         <table className="table table-striped table-bordered table-hover rounded-md bg-white border border-gray-200 w-full">
           <thead>
             <tr>
-              <th className="px-2 py-2 border">No</th>
-              <th className="px-2 py-2 border">Waktu dan Tanggal</th>
-              <th className="px-2 py-2 border">Sampel ke-</th>
-              <th className="px-2 py-2 border">Absorbansi</th>
-              <th className="px-2 py-2 border">Konsentrasi</th>
-              <th className="px-2 py-2 border">Aksi</th>
+              <th className="text-sm md:text-md px-2 py-2 border">No</th>
+              <th className="text-[12px] md:text-md px-2 py-2 border">Waktu dan Tanggal</th>
+              <th className="text-sm md:text-md px-2 py-2 border">Sampel ke-</th>
+              <th className="text-sm md:text-md px-2 py-2 border">Absorbansi (a.u)</th>
+              <th className="text-sm md:text-md px-2 py-2 border">Konsentrasi (ppm)</th>
+              <th className="text-sm md:text-md px-2 py-2 border">Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -104,7 +104,7 @@ const Table = () => {
                 <td className="px-2 py-2 border text-center">
                   {indexOfFirstRow + index + 1}
                 </td>
-                <td className="px-2 py-2 border text-center">
+                <td className="text-[12px] md:text-md px-2 py-2 border text-center">
                   {formatDateTime(item.created_at)}
                 </td>
                 <td className="px-2 py-2 border text-center">
@@ -137,8 +137,8 @@ const Table = () => {
       <div className="flex justify-center mt-4">
         <button
           onClick={handlePrevPage}
-          className={`bg-gray-500 text-white px-4 py-2 rounded mr-2 ${
-            currentPage === 1 ? "disabled bg-gray-100" : "hover:bg-gray-700"
+          className={` text-white px-4 py-2 rounded mr-2 ${
+            currentPage === 1 ? "disabled bg-gray-100" : "hover:bg-gray-700 bg-gray-500"
           }`}
           disabled={currentPage === 1}
         >
@@ -159,12 +159,11 @@ const Table = () => {
         ))}
         <button
           onClick={handleNextPage}
-          className={`bg-gray-500 text-white px-4 py-2 rounded ml-2 ${
+          className={` text-white px-4 py-2 rounded ml-2 ${
             currentPage === totalPages
               ? "disabled bg-gray-100"
-              : "hover:bg-gray-700"
+              : "hover:bg-gray-700 bg-gray-500"
           }`}
-          disabled={currentPage === totalPages}
         >
           <FontAwesomeIcon icon={faCaretRight} />
         </button>

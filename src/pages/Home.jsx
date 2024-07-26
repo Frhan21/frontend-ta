@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import About from "../components/About";
 import Purpose from "../components/Purpose";
 import Dashboard from "../components/Dashboard";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <About />
         <Purpose />
         <Dashboard />
+        <Footer />
     </>
   );
 };
