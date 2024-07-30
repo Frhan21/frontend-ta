@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div className="bg-blue-600 h-[250px] w-full flex justify-center items-center mt-10 md:mt-5 font-['Montserrat']">
+      <div className="bg-[#11468f] h-[250px] w-full flex justify-center items-center mt-10 md:mt-5 font-['Montserrat']">
         <div className="flex flex-col items-center justify-center text-center">
           <p className="text-white text-center text-sm">
             Copyright &copy; 2024. All rights reserved.
@@ -17,7 +17,7 @@ const Footer = () => {
                 <Link to="https://www.instagram.com/farhan_r45/" className="text-gray-300 hover:text-white cursor-pointer"><FontAwesomeIcon icon={faInstagram}/></Link>
                 <Link to="/" className="text-gray-300 hover:text-white cursor-pointer"><FontAwesomeIcon icon={faFacebook}/></Link>
                 <Link to="https://github.com/Frhan21" className="text-gray-300 hover:text-white cursor-pointer"><FontAwesomeIcon icon={faGithub}/></Link>
-                <Link to="https://github.com/Frhan21" className="text-gray-300 hover:text-white cursor-pointer"><FontAwesomeIcon icon={faXTwitter}/></Link>
+                <Link to="https://x.com/ha_efn?t=xARKUdZOZxlc9lC_rQxU4g&s=09" className="text-gray-300 hover:text-white cursor-pointer"><FontAwesomeIcon icon={faXTwitter}/></Link>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ const Table = () => {
   const [selectedData, setSelectedData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(5); // Adjust rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +28,6 @@ const Table = () => {
         const response = await axios.get(
           "https://formd-research.000webhostapp.com/sample"
         );
-        console.log(response.data);
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -53,7 +52,16 @@ const Table = () => {
     return format(new Date(datetime), "dd-MM-yyyy HH:mm:ss");
   };
 
-  // Pagination logic
+  const deleteData = async (id) => {
+    try {
+      await axios.delete(`https://formd-research.000webhostapp.com/sample/${id}`);
+      // Refresh data after deletion
+      setData(data.filter(item => item.id !== id));
+    } catch (error) {
+      console.error("Error deleting data: ", error);
+    }
+  };
+
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);
@@ -123,7 +131,10 @@ const Table = () => {
                   >
                     <FontAwesomeIcon icon={faEye} />
                   </button>
-                  <button className="bg-red-500 text-white px-2 py-1 rounded md:ml-2 hover:bg-red-700">
+                  <button
+                    onClick={() => deleteData(item.id)}
+                    className="bg-red-500 text-white px-2 py-1 rounded md:ml-2 hover:bg-red-700"
+                  >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
