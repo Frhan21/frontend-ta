@@ -20,10 +20,10 @@ const PopOut = ({ data, closeModal }) => {
       const response = await axios.get(
         `https://formd-research.000webhostapp.com/sensor?sample_id=${data.id}`
       );
-      const filteredData = response.data.filter(
-        (item) => item.sample_id === data.id
-      );
-      setSensor(filteredData);
+      // const filteredData = response.data.filter(
+      //   (item) => item.sample_id === data.id
+      // );
+      setSensor(response.data);
       setLoading(false);
     } catch (error) {
       console.log("Error fetching sensor data", error);
@@ -38,6 +38,7 @@ const PopOut = ({ data, closeModal }) => {
       setLoading(true);
     };
   }, [data.id]);
+
 
   const generateLabels = (start, end, step) => {
     const labels = [];
@@ -54,7 +55,7 @@ const PopOut = ({ data, closeModal }) => {
   };
 
   const chartData = {
-    labels: generateLabels(0, 2, 0.2),
+    labels: generateLabels(0.2, 2, 0.2),
     datasets: [
       {
         label: "Tegangan (V)",

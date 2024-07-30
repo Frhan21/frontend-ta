@@ -103,7 +103,7 @@ const Table = () => {
               <th className="text-sm md:text-md px-2 py-2 border">Sampel ke-</th>
               <th className="text-sm md:text-md px-2 py-2 border">Absorbansi (a.u)</th>
               <th className="text-sm md:text-md px-2 py-2 border">Konsentrasi (ppm)</th>
-              <th className="text-sm md:text-md px-2 py-2 border">Aksi</th>
+              <th className="text-sm md:text-md px-2 py-2 border">Detail</th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +112,7 @@ const Table = () => {
                 <td className="px-2 py-2 border text-center">
                   {indexOfFirstRow + index + 1}
                 </td>
-                <td className="text-[12px] md:text-md px-2 py-2 border text-center">
+                <td className="text-[12px] md:text-[16px] px-2 py-2 border text-center">
                   {formatDateTime(item.created_at)}
                 </td>
                 <td className="px-2 py-2 border text-center">
@@ -124,18 +124,12 @@ const Table = () => {
                 <td className="px-2 py-2 border text-center">
                   {item.concentration}
                 </td>
-                <td className="px-2 py-2 border flex flex-wrap items-center justify-center gap-2 text-center">
+                <td className="px-2 py-2 border text-center">
                   <button
                     onClick={() => openModal(item)}
                     className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
                   >
                     <FontAwesomeIcon icon={faEye} />
-                  </button>
-                  <button
-                    onClick={() => deleteData(item.id)}
-                    className="bg-red-500 text-white px-2 py-1 rounded md:ml-2 hover:bg-red-700"
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
               </tr>
