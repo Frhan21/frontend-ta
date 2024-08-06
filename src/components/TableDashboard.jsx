@@ -52,16 +52,6 @@ const Table = () => {
     return format(new Date(datetime), "dd-MM-yyyy HH:mm:ss");
   };
 
-  const deleteData = async (id) => {
-    try {
-      await axios.delete(`https://formd-research.000webhostapp.com/sample/${id}`);
-      // Refresh data after deletion
-      setData(data.filter(item => item.id !== id));
-    } catch (error) {
-      console.error("Error deleting data: ", error);
-    }
-  };
-
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);

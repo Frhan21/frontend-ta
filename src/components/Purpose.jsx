@@ -1,7 +1,7 @@
 const Purpose = () => {
   return (
     <>
-      <section>
+      <section id="purpose">
         <div className="flex flex-col text-center items-center justify-center mt-6 md:mt-[10rem] font-['Montserrat']">
           <span className="text-[40px] p-2 md:text-[40px] font-black uppercase text-[#11468f]">
             Purpose and Benefit

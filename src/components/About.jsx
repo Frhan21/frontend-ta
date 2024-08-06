@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <>
-      <section className="lg:container font-['Montserrat'] mt-[40px]">
+      <section className="lg:container font-['Montserrat'] mt-[40px]" id="about">
         <div className="flex flex-col text-center items-center justify-center">
           <span className="text-[40px] uppercase text-[#11468f] font-black">
             About Research

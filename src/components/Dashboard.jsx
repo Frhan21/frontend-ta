@@ -4,7 +4,7 @@ import TableDashboard from "./TableDashboard";
 const Dashboard = () => {
   return (
     <>
-      <section className="mt-5 md:mt-[10rem]">
+      <section className="mt-5 md:mt-[10rem]" id="sample">
         <div className="flex flex-wrap flex-col items-center justify-center font-['Montserrat']">
           <span className="text-sm text-white p-3 md:px-6 md:py-2 bg-[#11468f] rounded-full ">
             Want see more ?

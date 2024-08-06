@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <>
       {/* Suggested code may be subject to a license. Learn more: ~LicenseLog:3506041666. */}
-      <section className="lg:container flex md:flex-row flex-col mt-[4rem] md:items-start items-center justify-center font-['Montserrat']">
+      <section className="lg:container flex md:flex-row flex-col mt-[5rem] md:items-start items-center justify-center font-['Montserrat']" id="header">
         <div className="lg:basis-1/2 basis-full md:ml-[6rem] flex justify-center md:items-start items-center flex-col">
           <p className="text-[11px] md:text-[15px] bg-[#11468f] w-1/2 text-center py-2 rounded-lg text-white italic">
             Welcome to My Web Research
