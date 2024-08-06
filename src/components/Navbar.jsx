@@ -51,7 +51,7 @@ const Navbar = () => {
         <div
           className={`${
             isOpen ? "translate-x-0" : "translate-x-full"
-          } md:translate-x-0 fixed top-0 right-0 w-2/3 h-full bg-white/90 shadow-lg md:shadow-none backdrop-blur-lg md:bg-transparent md:relative md:w-auto md:flex md:items-center transition-transform duration-300 ease-in-out`}
+          } md:translate-x-0 fixed top-8 -right-4 w-2/3 h-full shadow-lg md:shadow-none md:bg-transparent md:relative md:w-auto md:flex md:items-center transition-transform duration-300 ease-in-out`}
         >
           <ul className="flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0">
             <li>
