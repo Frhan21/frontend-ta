@@ -8,8 +8,9 @@ const Navbar = () => {
     const element = document.getElementById(id);
     if (element) {
       const yOffset = -70; // Offset sesuai dengan tinggi navbar
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
       setIsOpen(false); // Tutup menu setelah klik
     }
   };
@@ -23,7 +24,10 @@ const Navbar = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <div className="flex items-center">
           <span className="self-center whitespace-nowrap text-blue-800">
-            <div className="text-xl font-black">Formalin Detection</div>
+            <div className="text-xl font-black">
+              {" "}
+              <NavLink to="#home">Formalin Detection</NavLink>
+            </div>
             <div className="text-sm font-light">Web Research</div>
           </span>
         </div>
@@ -51,13 +55,13 @@ const Navbar = () => {
         <div
           className={`${
             isOpen ? "translate-x-0" : "translate-x-full"
-          } md:translate-x-0 fixed top-8 -right-4 w-2/3 h-full shadow-lg md:shadow-none md:bg-transparent md:relative md:w-auto md:flex md:items-center transition-transform duration-300 ease-in-out`}
+          } md:translate-x-0 fixed md:top-0 top-8 md:right-0 -right-4 w-2/3 h-full shadow-lg md:shadow-none md:bg-transparent md:relative md:w-auto md:flex md:items-center transition-transform duration-300 ease-in-out`}
         >
           <ul className="flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0">
             <li>
               <NavLink
                 to="#header"
-                onClick={() => handleScrollTo('header')}
+                onClick={() => handleScrollTo("header")}
                 className={({ isActive }) =>
                   `block py-2 pl-3 pr-4 md:text-blue-900 text-white hover:text-white hover:bg-blue-900 md:bg-transparent md:p-2 md:rounded delay-200 transition-all ${
                     isActive ? "bg-blue-500 text-white" : ""
@@ -70,7 +74,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="#about"
-                onClick={() => handleScrollTo('about')}
+                onClick={() => handleScrollTo("about")}
                 className={({ isActive }) =>
                   `block py-2 pl-3 pr-4 md:text-blue-900 text-white hover:text-white hover:bg-blue-900 md:bg-transparent md:p-2 md:rounded delay-200 transition-all ${
                     isActive ? "bg-blue-500 text-white" : ""
@@ -83,7 +87,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="#purpose"
-                onClick={() => handleScrollTo('purpose')}
+                onClick={() => handleScrollTo("purpose")}
                 className={({ isActive }) =>
                   `block py-2 pl-3 pr-4 md:text-blue-900 text-white hover:text-white hover:bg-blue-900 md:bg-transparent md:p-2 md:rounded delay-200 transition-all ${
                     isActive ? "bg-blue-500 text-white" : ""
@@ -96,7 +100,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="#sample"
-                onClick={() => handleScrollTo('sample')}
+                onClick={() => handleScrollTo("sample")}
                 className={({ isActive }) =>
                   `block py-2 pl-3 pr-4 md:text-blue-900 text-white hover:text-white hover:bg-blue-900 md:bg-transparent md:p-2 md:rounded delay-200 transition-all ${
                     isActive ? "bg-blue-500 text-white" : ""
