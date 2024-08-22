@@ -18,7 +18,7 @@ const PopOut = ({ data, closeModal }) => {
   const fetchSensor = async () => {
     try {
       const response = await axios.get(
-        `https://formd-research.000webhostapp.com/sensor?sample_id=${data.id}`
+        `https://express-pi-dun.vercel.app/api/sensor?sample_id=${data.id}`
       );
       // const filteredData = response.data.filter(
       //   (item) => item.sample_id === data.id
@@ -114,10 +114,10 @@ const PopOut = ({ data, closeModal }) => {
     return (
       <div className="flex items-center justify-center w-[8rem] h-[4rem] rounded-md bg-white">
         <div
-          className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+          className="inline-block w-8 h-8 border-4 rounded-full spinner-border animate-spin"
           role="status"
         >
-          <span className="sr-only text-black">Loading...</span>
+          <span className="text-black sr-only">Loading...</span>
         </div>
       </div>
     );
@@ -125,8 +125,8 @@ const PopOut = ({ data, closeModal }) => {
 
   return (
     <div className="bg-white w-full max-w-lg md:max-w-3xl h-full md:h-[550px] rounded-lg md:p-10 p-4 shadow-lg mx-auto overflow-auto">
-      <h2 className="text-xl text-center font-bold">Detail Data</h2>
-      <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10 mt-10">
+      <h2 className="text-xl font-bold text-center">Detail Data</h2>
+      <div className="flex flex-wrap items-center justify-center gap-4 mt-10 md:gap-10">
         <div className="flex flex-col items-center justify-center font-['Monteserrat']">
           <span className="px-4 py-2 bg-[#11468f] text-white rounded-lg mb-3">
             Data ID:
@@ -152,9 +152,9 @@ const PopOut = ({ data, closeModal }) => {
           {data.absorbance} a.u
         </div>
       </div>
-      <div className="flex flex-col md:flex-row items-start justify-center mx-auto gap-4 mt-10">
+      <div className="flex flex-col items-start justify-center gap-4 mx-auto mt-10 md:flex-row">
         <div className="w-full">
-          <table className="bg-white border border-gray-200 w-full">
+          <table className="w-full bg-white border border-gray-200">
             <thead>
               <tr>
                 <th className="px-4 py-2 border">No</th>
@@ -165,13 +165,13 @@ const PopOut = ({ data, closeModal }) => {
             <tbody>
               {currentRows.map((item, index) => (
                 <tr key={index}>
-                  <td className="px-4 py-2 border text-center">
+                  <td className="px-4 py-2 text-center border">
                     {indexOfFirstRow + index + 1}
                   </td>
-                  <td className="px-4 py-2 border text-center">
+                  <td className="px-4 py-2 text-center border">
                     {item.uv_reading}
                   </td>
-                  <td className="px-4 py-2 border text-center">
+                  <td className="px-4 py-2 text-center border">
                     {item.v_reading}
                   </td>
                 </tr>
@@ -195,7 +195,7 @@ const PopOut = ({ data, closeModal }) => {
             </button>
           </div>
         </div>
-        <div className="flex justify-center items-center w-full mt-4 md:mt-0">
+        <div className="flex items-center justify-center w-full mt-4 md:mt-0">
           <div className="h-[12rem] w-full md:w-[20rem] p-2 border border-gray-300 rounded-lg">
             <Line data={chartData} options={options} />
           </div>
@@ -204,7 +204,7 @@ const PopOut = ({ data, closeModal }) => {
       <div className="flex justify-center mt-4">
         <button
           onClick={closeModal}
-          className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+          className="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-700"
         >
           Close
         </button>

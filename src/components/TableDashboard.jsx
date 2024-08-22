@@ -26,7 +26,7 @@ const Table = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://formd-research.000webhostapp.com/sample"
+          "https://express-pi-dun.vercel.app/api/sample"
         );
         setData(response.data);
         setLoading(false);
@@ -71,9 +71,9 @@ const Table = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center rounded-md bg-white">
+      <div className="flex items-center justify-center bg-white rounded-md">
         <div
-          className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+          className="inline-block w-8 h-8 border-4 rounded-full spinner-border animate-spin"
           role="status"
         >
           <span className="sr-only">Loading...</span>
@@ -83,41 +83,41 @@ const Table = () => {
   }
 
   return (
-    <div className="lg:container flex flex-col items-center justify-center mx-0 md:mx-auto md:mt-2">
-      <div className="w-full max-w-full full overflow-y-auto">
-        <table className="table table-striped table-bordered table-hover rounded-md bg-white border border-gray-200 w-full">
+    <div className="flex flex-col items-center justify-center mx-0 lg:container md:mx-auto md:mt-2">
+      <div className="w-full max-w-full overflow-y-auto full">
+        <table className="table w-full bg-white border border-gray-200 rounded-md table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th className="text-sm md:text-md px-2 py-2 border">No</th>
+              <th className="px-2 py-2 text-sm border md:text-md">No</th>
               <th className="text-[12px] md:text-md px-2 py-2 border">Waktu dan Tanggal</th>
-              <th className="text-sm md:text-md px-2 py-2 border">Sampel ke-</th>
-              <th className="text-sm md:text-md px-2 py-2 border">Absorbansi (a.u)</th>
-              <th className="text-sm md:text-md px-2 py-2 border">Konsentrasi (ppm)</th>
-              <th className="text-sm md:text-md px-2 py-2 border">Detail</th>
+              <th className="px-2 py-2 text-sm border md:text-md">Sampel ke-</th>
+              <th className="px-2 py-2 text-sm border md:text-md">Absorbansi (a.u)</th>
+              <th className="px-2 py-2 text-sm border md:text-md">Konsentrasi (ppm)</th>
+              <th className="px-2 py-2 text-sm border md:text-md">Detail</th>
             </tr>
           </thead>
           <tbody>
             {currentRows.map((item, index) => (
               <tr key={item.id}>
-                <td className="px-2 py-2 border text-center">
+                <td className="px-2 py-2 text-center border">
                   {indexOfFirstRow + index + 1}
                 </td>
                 <td className="text-[12px] md:text-[16px] px-2 py-2 border text-center">
                   {formatDateTime(item.created_at)}
                 </td>
-                <td className="px-2 py-2 border text-center">
+                <td className="px-2 py-2 text-center border">
                   Sampel ke-{indexOfFirstRow + index + 1}
                 </td>
-                <td className="px-2 py-2 border text-center">
+                <td className="px-2 py-2 text-center border">
                   {item.absorbance}
                 </td>
-                <td className="px-2 py-2 border text-center">
+                <td className="px-2 py-2 text-center border">
                   {item.concentration}
                 </td>
-                <td className="px-2 py-2 border text-center">
+                <td className="px-2 py-2 text-center border">
                   <button
                     onClick={() => openModal(item)}
-                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
+                    className="px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-700"
                   >
                     <FontAwesomeIcon icon={faEye} />
                   </button>
